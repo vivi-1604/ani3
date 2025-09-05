@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love ❤ 3 Years Together!</title>
+    <style>
+        body {
+            background: #fff;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            transition: all 0.5s ease;
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+
+        #passwordScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            color: white;
+
+        }
+
+        #passwordInput {
+            padding: 12px 20px;
+            font-size: 18px;
+            margin: 15px;
+            border-radius: 25px;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 250px;
+            max-width: 80%;
+            text-align: center;
+
+        }
+
+        #passwordSubmit {
+            padding: 12px 30px;
+            background: white;
+            color: #ff4081;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #passwordSubmit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 22, 145, 0.644);
+        }
+
+        #passwordError {
+            color: white;
+            display: none;
+            margin-top: 10px;
+            background: rgba(250, 4, 127, 0.438);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        #mainContent {
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+
+        #loveButton {
+            background: linear-gradient(45deg, #ff40a0, #ff6b8b);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            width: 90%;
+            max-width: 300px;
+        }
+
+        #loveButton:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 64, 129, 0.6);
+        }
+
+        #messageDisplay {
+            min-height: 150px;
+            margin: 30px auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .loveMessage {
+            background: white;
+            color: #ff4081;
+            padding: 20px;
+            margin: 0 auto;
+            border-radius: 15px;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .loveMessage.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #loveLetter {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .letter-wrapper {
+            width: 90%;
+            max-width: 700px;
+            height: 70vh;
+            border: 5px solid #ff4081;
+            border-radius: 20px;
+            padding: 30px;
+            overflow-y: scroll;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            background: #fff;
+            white-space: pre-wrap;
+
+            scrollbar-width: none;
+
+            -ms-overflow-style: none;
+
+        }
+
+        .letter-wrapper::-webkit-scrollbar {
+            display: none;
+
+        }
+
+        .letter-heading {
+            color: #ff6b8b;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .letter-page {
+            font-family: 'Segoe Script', cursive;
+            font-size: 1.5em;
+            line-height: 2;
+            padding: 0 20px;
+            color: #333;
+        }
+
+        #photoGallery {
+            display: none;
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-title {
+            color: #ff4081;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .gallery-image-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 8s linear;
+            transform-origin: center center;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2) rotate(1deg);
+        }
+
+        .gallery-item:nth-child(1):hover img {
+            transform: scale(1.3) translateX(-10%);
+        }
+
+        .gallery-item:nth-child(2):hover img {
+            transform: scale(1.3) translateX(10%);
+        }
+
+        .gallery-item:nth-child(3):hover img {
+            transform: scale(1.3) translateY(-10%);
+        }
+
+        .gallery-item:nth-child(4):hover img {
+            transform: scale(1.3) translateY(10%);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(204, 19, 74, 0.877);
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+
+        #photoPrompt {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            max-width: 350px;
+            width: 90%;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            animation: slideIn 0.5s ease-out;
+            border-left: 5px solid #ff4081;
+        }
+
+
+        #videoPrompt {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            max-width: 350px;
+            width: 90%;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            animation: slideIn 0.5s ease-out;
+            border-left: 5px solid #ff4081;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        #videoPrompt h3,
+        #photoPrompt h3 {
+            color: #ff4081;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .prompt-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .prompt-button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #yesButton,
+        #yesPhotoButton {
+            background: linear-gradient(45deg, #ff4081, #ff6b8b);
+            color: white;
+        }
+
+        #noButton,
+        #noPhotoButton {
+            background: #f5f5f5;
+            color: #666;
+        }
+
+        .prompt-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #videoContainer {
+            margin: 40px auto;
+            width: 90%;
+            max-width: 600px;
+            display: none;
+            animation: fadeIn 1.5s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        #progressBar {
+            width: 0%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff4081, #ff6b8b);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        #musicToggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #ff4081, #ff6b8b);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 64, 129, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translate(-50%, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, -100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float-up-right {
+            0% {
+                transform: translate(-50%, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(50vw, -100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float-up-left {
+            0% {
+                transform: translate(-50%, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-150vw, -100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+
+        @keyframes heartPulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .pulsing-heart {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            font-size: 100px;
+            color: #ff4081;
+            z-index: 1000;
+            animation: heartPulse 2s ease-out forwards;
+            pointer-events: none;
+        }
+
+        /* New Romantic Features */
+        #loveCounter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            color: #ff4081;
+            z-index: 10;
+            display: none;
+        }
+
+        #kissButton {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: linear-gradient(45deg, #ff4081, #ff6b8b);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 64, 129, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            transition: all 0.3s;
+            z-index: 10;
+            display: none;
+        }
+
+        #loveLetter {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: fadeIn 0.5s ease;
+        }
+
+        #loveLetter h2 {
+            color: #ff4081;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #loveLetter p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        #closeLetter {
+            background: linear-gradient(45deg, #ff4081, #ff6b8b);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        #closeLetter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #memoryWall {
+            display: none;
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .memory-item {
+            background: #fff9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ff6b8b;
+        }
+
+        .memory-date {
+            color: #ff4081;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .memory-text {
+            line-height: 1.6;
+        }
+
+        #countdown {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            color: #ff4081;
+            z-index: 10;
+        }
+
+        #loveMeter {
+            display: none;
+            width: 90%;
+            max-width: 500px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #meterFill {
+            height: 30px;
+            background: linear-gradient(90deg, #ff758c, #ff7eb3);
+            border-radius: 15px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #meterText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        #meterLabel {
+            text-align: center;
+            margin-top: 10px;
+            color: #ff4081;
+            font-weight: bold;
+        }
+
+        #loveCalculator {
+            display: none;
+            width: 90%;
+            max-width: 400px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-input {
+            margin-bottom: 15px;
+        }
+
+        .calculator-input label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ff4081;
+        }
+
+        .calculator-input input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ffb3c1;
+            border-radius: 5px;
+        }
+
+        #calculateLove {
+            background: linear-gradient(45deg, #ff4081, #ff6b8b);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        #loveResult {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #ff4081;
+            font-weight: bold;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                height: 250px;
+            }
+
+            #photoPrompt,
+            #videoPrompt {
+                right: 50%;
+                transform: translateX(50%);
+                bottom: 20px;
+                max-width: 90%;
+            }
+
+            #musicToggle,
+            #kissButton {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            #kissButton {
+                bottom: 90px;
+            }
+
+            h1 {
+                font-size: 1.8em !important;
+            }
+
+            #loveCounter,
+            #countdown {
+                top: 10px;
+                right: 10px;
+                left: auto;
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+        }
+
+        /* ===== QUIZ CONTAINER ===== */
+        #quizContainer {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(255, 64, 129, 0.2);
+            border: 2px solid #ffb3c1;
+            position: relative;
+            overflow: hidden;
+            display: none;
+            /* Hidden by default */
+        }
+
+        #quizContainer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff4081, #ff6b8b);
+        }
+
+        /* ===== QUIZ HEADER ===== */
+        #quizContainer h3 {
+            color: #ff4081;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            position: relative;
+            display: inline-block;
+        }
+
+        #quizContainer h3::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: #ff6b8b;
+        }
+
+        /* ===== QUESTION STYLING ===== */
+        #quizQuestion {
+            font-size: 1.2em;
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff0f5;
+            border-radius: 10px;
+            border-left: 4px solid #ff4081;
+            transition: all 0.3s ease;
+        }
+
+        #quizQuestion:hover {
+            transform: translateX(5px);
+            box-shadow: 5px 5px 15px rgba(255, 64, 129, 0.1);
+        }
+
+        /* ===== ANSWER OPTIONS ===== */
+        .quiz-option {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255, 182, 193, 0.3);
+            border: 1px solid rgba(255, 64, 129, 0.3);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 1em;
+            color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-option::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 64, 129, 0.1), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 182, 193, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.2);
+        }
+
+        .quiz-option:hover::before {
+            left: 100%;
+        }
+
+        /* ===== SELECTED/CORRECT/WRONG STATES ===== */
+        .quiz-option.selected {
+            background: #ff4081;
+            color: white;
+        }
+
+        .quiz-option.correct {
+            background: #4CAF50;
+            color: white;
+            animation: pulseCorrect 0.5s;
+        }
+
+        .quiz-option.wrong {
+            background: #F44336;
+            color: white;
+            animation: shake 0.5s;
+        }
+
+        @keyframes pulseCorrect {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* ===== QUIZ RESULT DISPLAY ===== */
+        #quizResult {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: none;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px dashed #ff4081;
+            animation: fadeIn 0.5s ease;
+        }
+
+        #quizResult.correct {
+            color: #4CAF50;
+        }
+
+        #quizResult.wrong {
+            color: #F44336;
+        }
+
+        /* ===== RETRY BUTTON ===== */
+        #retryQuiz {
+            display: none;
+            margin: 0 auto;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #ff4081, #ff6b8b);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+        }
+
+        #retryQuiz:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 64, 129, 0.4);
+        }
+
+        /* ===== PROGRESS INDICATOR ===== */
+        .quiz-progress {
+            height: 5px;
+            background: #ffeef8;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff4081, #ff6b8b);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* ===== LANGUAGE TOGGLES ===== */
+        .english,
+        .burmese {
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 600px) {
+            #quizContainer {
+                padding: 15px;
+                margin: 20px 10px;
+            }
+
+            .quiz-option {
+                padding: 12px;
+                font-size: 0.9em;
+            }
+
+            #quizQuestion {
+                font-size: 1em;
+                padding: 10px;
+            }
+        }
+
+        #qrSection {
+            display: none;
+            /* hidden until triggered */
+            margin: 20px auto;
+            text-align: center;
+            background: #fff0f5;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .qr-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #qrSection img {
+            width: 180px;
+            height: 180px;
+            border: 5px solid #ff4081;
+            border-radius: 20px;
+            background: #fff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(255, 64, 129, 0.7);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 15px rgba(255, 64, 129, 0.7);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(255, 64, 129, 0.7);
+            }
+        }
+
+        .highlight-qr {
+            animation: pulse 1.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div id="loveCounter">💗 Clicks: 0</div>
+    <div id="countdown">Next meeting in: -- days -- hours -- minutes</div>
+
+    <div id="passwordScreen">
+        <h1 style="font-size: 2.5em; margin-bottom: 10px;">❤ Our Special Moment ❤</h1>
+        <p style="font-size: 1.1em; margin-bottom: 30px;">Enter the Anniversary Date with this format (DDMMYYYY)</p>
+        <input type="password" id="passwordInput" placeholder="အသဲတို့ရဲ့ Ani Dateလေးထည့်ပါ" inputmode="numeric">
+        <button id="passwordSubmit">Unlock Our Love</button>
+        <p id="passwordError">Password မှားနေတယ်ကိုကို သေချာပြန်ထည့်!</p>
+    </div>
+
+    <div id="mainContent">
+        <h1 style="font-size: 2.2em; color: #ff4081; margin-bottom: 10px;">Happy 3rd Anniversary!</h1>
+        <p style="color: #666; margin-bottom: 30px;">Click the button below to read my messages for you...</p>
+
+        <button id="loveButton">Read My Messages ❤</button>
+
+        <div id="messageDisplay">
+            <div class="loveMessage" id="currentMessage"></div>
+        </div>
+
+        <div id="loveMeter">
+            <h3 style="color: #ff4081; text-align: center;">Our Love Meter</h3>
+            <div id="meterFill">
+                <div id="meterText">100%</div>
+            </div>
+            <div id="meterLabel">How much I love you today</div>
+        </div>
+
+        <div id="loveCalculator">
+            <h3 style="color: #ff4081; text-align: center;">Love Calculator</h3>
+            <div class="calculator-input">
+                <label for="yourName">Your Name:</label>
+                <input type="text" id="yourName" placeholder="Enter your name">
+            </div>
+            <div class="calculator-input">
+                <label for="partnerName">Partner's Name:</label>
+                <input type="text" id="partnerName" placeholder="Enter partner's name">
+            </div>
+            <button id="calculateLove">Calculate Love</button>
+            <div id="loveResult"></div>
+        </div>
+
+        <div id="qrSection">
+            <h3 style="color:#ff4081; text-align:center;">Scan Our QR Code</h3>
+            <div class="qr-wrapper">
+                <img src="images/Loveqr.png" alt="Our QR Code">
+                <p style="font-size:0.9em; color:#666;">Scan this to see something special 💖</p>
+            </div>
+        </div>
+
+
+        <div id="quizContainer" style="display:none;">
+            <h3 style="color:#ff4081; text-align:center;">
+                <span class="english">Love Quiz</span>
+                <span class="burmese">အချစ်ပဟေဠိ</span>
+            </h3>
+            <div id="quizQuestion" style="font-size:1.1em; margin:15px 0;"></div>
+            <div id="quizOptions" style="margin:20px 0;"></div>
+            <div id="quizResult"
+                style="padding:15px; margin:15px 0; background:#fff0f5; border-radius:10px; display:none;"></div>
+            <button id="retryQuiz"
+                style="display:none; background:#ff4081; color:white; border:none; padding:10px 20px; border-radius:50px; margin:10px auto;">
+                <span class="english">Try Again</span>
+                <span class="burmese">ထပ်ကြိုးစားမလား</span>
+            </button>
+        </div>
+        <div id="photoGallery">
+            <h3 class="gallery-title">Our Beautiful Memories Together</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image-container">
+                        <img src="images/pic1.png" alt="Our First Meet">
+                        <div class="gallery-caption">The day we first met 💗</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image-container">
+                        <img src="images/pic2.png" alt="Our First Date">
+                        <div class="gallery-caption">Our first date was magical ✨</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image-container">
+                        <img src="images/pic3.jpg" alt="Special Moment">
+                        <div class="gallery-caption">This memory warms my heart every time😁</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image-container">
+                        <img src="images/pic4.png" alt="Future Together">
+                        <div class="gallery-caption">Many more years to come!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="memoryWall">
+            <h3 style="color: #ff4081; text-align: center;">Our Memory Wall</h3>
+            <div class="memory-item">
+                <div class="memory-date">March 22, 2023</div>
+                <div class="memory-text">The day we first met.</div>
+            </div>
+            <div class="memory-item">
+                <div class="memory-date">March 22, 2023</div>
+                <div class="memory-text">Our first date at Night Market.You made me laugh so much my cheeks hurt.
+                </div>
+            </div>
+            <div class="memory-item">
+                <div class="memory-date">March 23, 2023</div>
+                <div class="memory-text">Our first Kiss.</div>
+            </div>
+            <div class="memory-item">
+                <div class="memory-date">Sep 6, 2023</div>
+                <div class="memory-text">Our first anniversary. You surprised me with that weekend getaway.</div>
+            </div>
+        </div>
+
+        <div id="photoPrompt">
+            <h3>Would you like to see our beautiful memories now?</h3>
+            <div class="prompt-buttons">
+                <button id="yesPhotoButton" class="prompt-button">Yes, Show Me</button>
+                <button id="noPhotoButton" class="prompt-button">Not Yet</button>
+            </div>
+        </div>
+
+        <div id="videoPrompt">
+            <h3>Would you like to watch our special video now?</h3>
+            <div class="prompt-buttons">
+                <button id="yesButton" class="prompt-button">Yes, Play Video</button>
+                <button id="noButton" class="prompt-button">Not Yet</button>
+            </div>
+        </div>
+
+        <div id="loveLetter">
+            <div class="letter-wrapper">
+                <div class="letter-page">
+                    <h2 class="letter-heading">My Dearest Koko,</h2>
+                    <div class="letter-date">August 15, 2025</div>
+                    <p>My love, every single day with you is a dream. You fill my life with so much happiness, laughter,
+                        and an overwhelming sense of peace. I never knew a love like ours could exist.</p>
+                    <p>I still get butterflies when I think about our first kiss. Every time I see your smile, my heart
+                        skips a beat. You are the most beautiful person I know, inside and out. Thank you for being you.
+                    </p>
+                    <p>I love you more than words can say. Happy Anniversary!</p>
+                    <p>Yours always,</p>
+                    <p>A Thel</p>
+                </div>
+            </div>
+            <div class="letter-footer">
+                <button id="closeLetter">Close</button>
+            </div>
+        </div>
+
+        <div id="videoContainer">
+            <video width="100%" controls id="loveVideo" preload="metadata">
+                <source src="videos/vd.mp4" type="video/mp4">
+                Your browser doesn't support the video tag.
+            </video>
+        </div>
+
+        <button id="musicToggle">♪</button>
+        <button id="kissButton">💋</button>
+
+        <audio id="bgMusic" loop>
+            <source src="audio/bg-music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <audio id="kissSound">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-kiss-sound-1490.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+</body>
+<script>
+    // Password Protection
+    const correctPassword = "06092022";
+    const passwordScreen = document.getElementById('passwordScreen');
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordSubmit = document.getElementById('passwordSubmit');
+    const passwordError = document.getElementById('passwordError');
+    const mainContent = document.getElementById('mainContent');
+    const progressBar = document.getElementById('progressBar');
+    const loveCounter = document.getElementById('loveCounter');
+    let clickCount = 0;
+
+    passwordSubmit.addEventListener('click', checkPassword);
+    passwordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkPassword();
+    });
+
+    function checkPassword() {
+        if (passwordInput.value === correctPassword) {
+            passwordScreen.style.display = 'none';
+            mainContent.style.display = 'block';
+            document.body.style.background = '#fff';
+            loveCounter.style.display = 'block';
+            kissButton.style.display = 'flex';
+            startMusic();
+            startCountdown();
+        } else {
+            passwordError.style.display = 'block';
+            passwordInput.value = '';
+        }
+    }
+
+    // Countdown to next meeting
+    function startCountdown() {
+        // Set your next meeting date here (YYYY, MM-1, DD)
+        const nextMeetingDate = new Date(2025, 9, 6);
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = nextMeetingDate - now;
+
+            if (diff <= 0) {
+                countdown.textContent = "We're together now! 💗";
+                return;
+            }
+
+
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 60000); // Update every minute
+    }
+
+    const quizData = [
+        {
+            question: {
+                en: "What's my favorite way to spend time with you?",
+                my: "ကိုကို နဲ့အတူအချိန်ကုန်ဆုံးရတဲ့ထဲ အသဲကြိုက်တဲ့ပုံစံက?"
+            },
+            options: [
+                { en: "Watching movies together", my: "ရုပ်ရှင်အတူကြည့်တာ" },
+                { en: "Video calls at night", my: "ညဘက်ဗီဒီယိုခေါ်တာ" },
+                { en: "Planning our future", my: "အနာဂတ်အတူစီစဉ်တာ" }
+            ],
+            answer: 1
+        },
+        {
+            question: {
+                en: "What always makes me smile when we're apart?",
+                my: "အသဲတို့ခွဲနေရတဲ့အခါ အသဲ့ကိုအမြဲပြုံးစေတာက?"
+            },
+            options: [
+                { en: "Your good morning texts", my: "မနက်ခင်းစာတိုလေးတွေ" },
+                { en: "Seeing our photos", my: "ဓာတ်ပုံတွေကြည့်တာ" },
+                { en: "Remembering our jokes", my: "အသဲတို့ရယ်စရာတွေသတိရတာ" }
+            ],
+            answer: 0
+        },
+        {
+            question: {
+                en: "Where do I want us to travel together?",
+                my: "အသဲတို့အတူခရီးထွက်ချင်တဲ့နေရာက?"
+            },
+            options: [
+                { en: "Bagan temples", my: "ပုဂံဘုရားပုထိုးတွေ" },
+                { en: "Beach vacation", my: "ကမ်းခြေအားလပ်ရက်" },
+                { en: "Mountain retreat", my: "တောင်ပေါ်အနားယူဖို့" }
+            ],
+            answer: 2
+        },
+        {
+            question: {
+                en: "What's my favorite nickname for you?",
+                my: "ကိုကို့ အသဲကိုခေါ်လေ့ရှိတဲ့ နာမည်လေးက?"
+            },
+            options: [
+                { en: "Sweetheart", my: "ချစ်သူ" },
+                { en: "My person", my: "အသဲရဲ့ ကောင်လေး" },
+                { en: "Baby", my: "ကလေးလေး" }
+            ],
+            answer: 1
+        },
+        {
+            question: {
+                en: "What do I love most about us?",
+                my: "အသဲတို့နဲ့RSပတ်သက်ပြီး အသဲအကြိုက်ဆုံးက?"
+            },
+            options: [
+                { en: "Our inside jokes", my: "အသဲတို့သီးသန့်ရယ်စရာ" },
+                { en: "How we understand each other", my: "တစ်ယောက်ကိုတစ်ယောက်နားလည်ပုံ" },
+                { en: "Our future dreams", my: "အနာဂတ်အိပ်မက်တွေ" }
+            ],
+            answer: 1
+        },
+        {
+            question: {
+                en: "What's my favorite Myanmar food?",
+                my: "အသဲအကြိုက်ဆုံးမြန်မာ့အစားအစာ?"
+            },
+            options: [
+                { en: "Shan Noodles", my: "ရှမ်းခေါက်ဆွဲ" },
+                { en: "Mohinga", my: "မုန့်ဟင်းခါး" }, // Correct
+                { en: "Tea Leaf Salad", my: "လက်ဖက်သုပ်" }
+            ],
+            answer: 1 // Mohinga is correct
+        },
+        {
+            question: {
+                en: "What's my zodiac sign?",
+                my: "အသဲရဲ့ဗေဒင်လက္ခဏာက?"
+            },
+            options: [
+                { en: "Leo", my: "သိဟ်" },
+                { en: "Capricorn", my: "မကာရ" }, // Correct
+                { en: "Pisces", my: "မိန်" }
+            ],
+            answer: 1 // Capricorn is correct
+        },
+        {
+            question: {
+                en: "Where do I want to go for our honeymoon?",
+                my: "အသဲတို့ဟန်နီမွန်းအတွက်ဘယ်ကိုသွားချင်လဲ?"
+            },
+            options: [
+                { en: "Switzerland", my: "ဆွစ်ဇာလန်" }, // Correct
+                { en: "Maldives", my: "မော်လဒိုက်" },
+                { en: "Japan", my: "ဂျပန်" }
+            ],
+            answer: 0 // Switzerland is correct
+        },
+        {
+            question: {
+                en: "What's my favorite time of day to talk with you?",
+                my: "ကိုကိုနဲ့စကားပြောရတာကို အသဲအကြိုက်ဆုံးအချိန်က?"
+            },
+            options: [
+                { en: "Morning", my: "မနက်ခင်း" },
+                { en: "Afternoon", my: "မွန်းလွဲ" },
+                { en: "Late night", my: "ညနက်ချိန်" } // Correct
+            ],
+            answer: 2
+        },
+        {
+            question: {
+                en: "What's my favorite memory of us?",
+                my: "အသဲတို့အကြောင်းအကြိုက်ဆုံးအမှတ်တရက?"
+            },
+            options: [
+                { en: "Our first date", my: "ပထမဆုံးစတွေ့တဲ့ရက်" },// Correct
+                { en: "When you surprised me", my: "ကိုကိုအံ့အားသင့်စေတဲ့အချိန်" },
+                { en: "Our anniversary", my: "အသဲတို့နှစ်ပတ်လည်နေ့" }
+            ],
+            answer: 0
+        },
+        {
+            question: {
+                en: "What's my favorite thing about you?",
+                my: "အသဲက ကိုကိုနဲ့ပတ်သက်ပြီးအကြိုက်ဆုံးအရာက?"
+            },
+            options: [
+                { en: "Koko", my: "ကိုကို" }, // Correct
+                { en: "...", my: "..." },
+                { en: "...", my: "..." }
+            ],
+            answer: 0
+        },
+        {
+            question: {
+                en: "What would I choose as our couple song?",
+                my: "အသဲသာဆိုရင် စုံတွဲသီချင်းအဖြစ်ဘယ်သီချင်းကိုရွေးမယ်ထင်လဲ?"
+            },
+            options: [
+                { en: "Perfect by Ed Sheeran", my: "Perfect - Ed Sheeran" }, // Correct
+                { en: "All of Me by John Legend", my: "All of Me - John Legend" },
+                { en: "A Thousand Years by Christina Perri", my: "A Thousand Years - Christina Perri" }
+            ],
+            answer: 0
+        },
+        {
+            question: {
+                en: "What's my favorite feature about myself?",
+                my: "အသဲ ကိုယ့်ကိုယ်ကိုယ်အကြိုက်ဆုံးအရာက?"
+            },
+            options: [
+                { en: "All", my: "အကုန်လုံး" }, // Correct
+                { en: "My hair", my: "ဆံပင်" },
+                { en: "My smile", my: "အပြုံး" }
+            ],
+            answer: 0
+        },
+        {
+            question: {
+                en: "What would I never tolerate in a relationship?",
+                my: "ဆက်ဆံရေးမှာ အသဲဘယ်တော့မှသည်းမခံနိုင်တာက?"
+            },
+            options: [
+                { en: "Being ignored", my: "လျစ်လျူရှုခံရတာ" }, // Correct
+                { en: "Small arguments", my: "အငြင်းအခုံအနည်းငယ်" },
+                { en: "Being late", my: "နောက်ကျတာ" }
+            ],
+            answer: 0
+        },
+        {
+            question: {
+                en: "What's my favorite season?",
+                my: "အကြိုက်ဆုံးရာသီဥတုက?"
+            },
+            options: [
+                { en: "Summer", my: "�ွေရာသီ" },
+                { en: "Winter", my: "ဆောင်းရာသီ" }, // Correct
+                { en: "Rainy season", my: "မိုးရာသီ" }
+            ],
+            answer: 1
+        },
+        {
+            question: {
+                en: "How do I prefer to resolve arguments?",
+                my: "အသဲအနေနဲ့ အငြင်းပွားမှုတွေကိုဘယ်လိုဖြေရှင်းတတ်လဲ?"
+            },
+            options: [
+                { en: "Talking it out immediately", my: "ချက်ချင်းဆွေးနွေးပြောဆိုတာ" }, // Correct
+                { en: "Taking time apart", my: "ခဏခွဲနေတာ" },
+                { en: "Pretending it didn't happen", my: "မဖြစ်ခဲ့သလိုလုပ်တာ" }
+            ],
+            answer: 0
+        }
+
+    ];
+
+
+
+    // Quiz Functions
+    function startQuiz() {
+        document.getElementById('quizContainer').style.display = 'block';
+        showQuestion();
+    }
+
+    function showQuestion() {
+        if (currentQuestion >= quizData.length) {
+            endQuiz();
+            return;
+        }
+
+        const question = quizData[currentQuestion];
+        document.getElementById('quizQuestion').innerHTML = `
+            <span class="english">${question.question.en}</span>
+            <span class="burmese">${question.question.my}</span>
+        `;
+
+        const optionsDiv = document.getElementById('quizOptions');
+        optionsDiv.innerHTML = '';
+
+        question.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'quiz-option';
+            button.innerHTML = `
+                <span class="english">${option.en}</span>
+                <span class="burmese">${option.my}</span>
+            `;
+            button.onclick = () => checkAnswer(index);
+            optionsDiv.appendChild(button);
+        });
+    }
+
+    function checkAnswer(selected) {
+        const correct = quizData[currentQuestion].answer;
+        const resultDiv = document.getElementById('quizResult');
+
+        if (selected === correct) {
+            quizScore++;
+            resultDiv.innerHTML = `
+                <span class="english">Correct! ❤</span>
+                <span class="burmese">မှန်ပါတယ်! ❤</span>
+            `;
+        } else {
+            resultDiv.innerHTML = `
+                <span class="english">Almost! The answer was: ${quizData[currentQuestion].options[correct].en}</span>
+                <span class="burmese">အနီးစပ်ဆုံး! အဖြေမှာ: ${quizData[currentQuestion].options[correct].my}</span>
+            `;
+        }
+
+        resultDiv.style.display = 'block';
+        currentQuestion++;
+        setTimeout(showQuestion, 1500);
+    }
+
+    function endQuiz() {
+        const resultDiv = document.getElementById('quizResult');
+        resultDiv.innerHTML = `
+            <span class="english">Quiz complete! Score: ${quizScore}/${quizData.length}</span>
+            <span class="burmese">ပဟေဠိပြီးဆုံးပါပြီ! ရမှတ်: ${quizScore}/${quizData.length}</span>
+        `;
+        document.getElementById('retryQuiz').style.display = 'block';
+    }
+
+    // Quiz Event Listener
+    document.getElementById('retryQuiz').addEventListener('click', () => {
+        currentQuestion = 0;
+        quizScore = 0;
+        document.getElementById('retryQuiz').style.display = 'none';
+        document.getElementById('quizResult').style.display = 'none';
+        showQuestion();
+    });
+
+    function startQuiz() { /* ... */ }
+    function showQuestion() { /* ... */ }
+    function checkAnswer() { /* ... */ }
+
+    function createHearts() {
+        const heartStyles = ['❤', '❤', '❤', '❤', '❤'];
+        const colors = ['#ff4081', '#ff6b8b', '#ff8a9d', '#ffb3c1', '#ff758c', '#ff7eb3'];
+        const animations = ['float-up', 'float-up-right', 'float-up-left'];
+
+        for (let i = 0; i < 30; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = heartStyles[Math.floor(Math.random() * heartStyles.length)];
+
+
+            const size = Math.random() * 20 + 10;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 8 + 4;
+            const delay = Math.random() * 5;
+            const animationType = animations[Math.floor(Math.random() * animations.length)];
+
+
+            heart.style.left = left + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = size + 'px';
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+            heart.style.animationName = animationType;
+            heart.style.animationDuration = duration + 's';
+            heart.style.animationDelay = delay + 's';
+
+            document.body.appendChild(heart);
+
+
+            setTimeout(() => {
+                heart.remove();
+            }, (duration + delay) * 1000);
+        }
+    }
+
+
+    const loveMessages = [
+        "ကိုကို့ကို အသဲ မနေ့ကထက် ဒီနေ့ပိုချစ်ပါတယ်...",
+        "ကိုကိုက အသဲအချစ်ဆုံး Hello နဲ့ အခက်ခဲဆုံး Goodbye လေးပါ။",
+        "၃ နှစ်ပြည့်ပြီနော်... ရှေ့ဆက်ပြီး ရေတွက်လို့မဆုံးနိုင်တဲ့အထိ ချစ်သွားကြမယ်။",
+        "အသဲရဲ့ တစ်စက္ကန့်ချင်းစီတိုင်းက ကိုကို့ကို လွမ်းနေတာပါပဲ။",
+        "ကိုကိုက အသဲရဲ့ ပျော်ရွှင်စရာရပ်ဝန်းလေးပဲ။",
+        "ဘယ်ဘဝပဲဖြစ်ဖြစ် အသဲက ကိုကို့ကိုပဲ အကြိမ်ထောင်သောင်းမက ရွေးချယ်မှာ။",
+        "အကွာအဝေးကတောင် အသဲတို့နှစ်ယောက်ရဲ့အချစ်ကို ရပ်တန့်နိုင်မှာမဟုတ်ဘူး။",
+        "ကိုကို့ရဲ့အပြုံးလေးကို အသဲ အရမ်းချစ်တယ်။",
+        "ကိုကို့ကို နောက်တစ်ကြိမ် ပြန်ပွေ့ဖက်ခွင့်ရဖို့ အသဲ မစောင့်နိုင်တော့ဘူး။",
+        "ကိုကိုက အသဲရဲ့ အရာရာပါပဲ။",
+        "ကိုကိုနဲ့ အတူရှိတဲ့အချိန်တိုင်းဟာ အသဲအတွက် အထူးခြားဆုံးပဲဆိုတာ သိလား",
+        "ကိုကိုတစ်ယောက်တည်းကပဲ အသဲရဲ့ နှလုံးသားကို လှုပ်ခတ်စေနိုင်တာ။",
+        "အသဲလေ တစ်ရက်ပြီးတစ်ရက် ကိုကို့ကို ပိုပိုပြီး ချစ်လာတာ ချစ်လို့တောင်မဝတော့ဘူး။",
+        "ကိုကိုကလေ အသဲအတွက်အချစ်ဆိုတာကို ယုံကြည်စေခဲ့တဲ့အကြောင်းအရင်းပါ။",
+        "အသဲအကြိုက်ဆုံးနေရာက ကိုကို့ရဲ့ရင်ခွင်လေးပဲ။",
+        "ကိုကိုက အသဲရဲ့ဘဝကို ပုံစံအမျိုးမျိုးနဲ့ ပြီးပြည့်စုံစေတယ်လေ။",
+        "အတူတူ ဖန်တီးခဲ့တဲ့ အမှတ်တရတိုင်းကို အသဲ တန်ဖိုးထားတယ်။",
+        "ပထမဆုံးအနမ်းလေးကို လည်း ဘယ်တော့မှ မမေ့ပါဘူး",
+        "ကိုကိုရဲ့ ဆရာကြီးလုပ်တတ်တဲ့ပုံစံလေးကိုလည်း အသဲ အရမ်းချစ်ပါတယ်နော်။",
+        "ကိုကိုနဲ့ အတူရှိနေဖို့အတွက်လေ ထာဝရ ဆိုတဲ့စကားလုံးကတောင် မလုံလောက်ဘူး။"
+    ];
+
+
+    const loveButton = document.getElementById('loveButton');
+    const currentMessage = document.getElementById('currentMessage');
+    const photoGallery = document.getElementById('photoGallery');
+    const photoPrompt = document.getElementById('photoPrompt');
+    const yesPhotoButton = document.getElementById('yesPhotoButton');
+    const noPhotoButton = document.getElementById('noPhotoButton');
+    const videoPrompt = document.getElementById('videoPrompt');
+    const videoContainer = document.getElementById('videoContainer');
+    const loveVideo = document.getElementById('loveVideo');
+    const musicToggle = document.getElementById('musicToggle');
+    const bgMusic = document.getElementById('bgMusic');
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const kissButton = document.getElementById('kissButton');
+    const kissSound = document.getElementById('kissSound');
+    const loveLetter = document.getElementById('loveLetter');
+    const closeLetter = document.getElementById('closeLetter');
+    const memoryWall = document.getElementById('memoryWall');
+    const loveMeter = document.getElementById('loveMeter');
+    const meterText = document.getElementById('meterText');
+    const loveCalculator = document.getElementById('loveCalculator');
+    const calculateLove = document.getElementById('calculateLove');
+    const loveResult = document.getElementById('loveResult');
+    const countdown = document.getElementById('countdown');
+
+    let isMusicPlaying = false;
+    let messageIndex = 0;
+
+    // Main button logic
+    loveButton.addEventListener('click', () => {
+        clickCount++;
+        loveCounter.textContent = `❤ Clicks: ${clickCount}`;
+        createHearts();
+
+        // Cycle through messages
+        currentMessage.classList.remove('active');
+
+        setTimeout(() => {
+            currentMessage.textContent = loveMessages[messageIndex];
+            currentMessage.classList.add('active');
+            messageIndex = (messageIndex + 1) % loveMessages.length;
+        }, 100);
+
+        // Update progress bar
+        const progress = (clickCount / loveMessages.length) * 100;
+        progressBar.style.width = `${Math.min(100, progress)}%`;
+
+        // Trigger events at certain click counts
+        // Quiz Variables
+        let currentQuestion = 0;
+        let quizScore = 0;
+
+        if (clickCount === 5) {
+            photoPrompt.style.display = 'block';
+            memoryWall.style.display = 'block';
+            memoryWall.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        if (clickCount === 7) {
+            startQuiz();
+            document.getElementById('quizContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        if (clickCount === 9) {
+            loveMeter.style.display = 'block';
+            loveMeter.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        if (clickCount === 12) {
+            loveCalculator.style.display = 'block';
+            loveCalculator.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        if (clickCount === 17) {
+
+            if (confirm("💖 Surprise! 💖")) {
+
+                const qrSection = document.getElementById('qrSection');
+                qrSection.style.display = 'block';
+                qrSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+
+                qrSection.classList.add('highlight-qr');
+                setTimeout(() => qrSection.classList.remove('highlight-qr'), 2000);
+            }
+            document.getElementById('qrSection').style.display = 'block';
+        }
+
+        if (clickCount === loveMessages.length) {
+            videoPrompt.style.display = 'block';
+            loveButton.textContent = "One Last Surprise...";
+            videoContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        if (clickCount > loveMessages.length) {
+            loveLetter.style.display = 'block';
+            loveLetter.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
+
+    let currentQuestion = 0;
+    let quizScore = 0;
+
+    function startQuiz() {
+        document.getElementById('quizContainer').style.display = 'block';
+        showQuestion();
+    }
+
+    function showQuestion() {
+        if (currentQuestion >= quizData.length) {
+            endQuiz();
+            return;
+        }
+
+        const question = quizData[currentQuestion];
+        document.getElementById('quizQuestion').innerHTML = `
+    <span class="english">${question.question.en}</span>
+    <span class="burmese">${question.question.my}</span>
+  `;
+
+        const optionsDiv = document.getElementById('quizOptions');
+        optionsDiv.innerHTML = '';
+
+        question.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'quiz-option';
+            button.innerHTML = `
+      <span class="english">${option.en}</span>
+      <span class="burmese">${option.my}</span>
+    `;
+            button.onclick = () => checkAnswer(index);
+            optionsDiv.appendChild(button);
+        });
+    }
+
+    function checkAnswer(selected) {
+        const correct = quizData[currentQuestion].answer;
+        const resultDiv = document.getElementById('quizResult');
+
+        if (selected === correct) {
+            quizScore++;
+            resultDiv.innerHTML = `
+      <span class="english">Correct!</span>
+      <span class="burmese">ကိုကိုက အရမ်းတော်တာပဲ!</span>
+    `;
+        } else {
+            resultDiv.innerHTML = `
+      <span class="english">Almost! The answer was: ${quizData[currentQuestion].options[correct].en}</span>
+      <span class="burmese">အနီးစပ်ဆုံးအဖြေ: ${quizData[currentQuestion].options[correct].my}</span>
+    `;
+        }
+
+        resultDiv.style.display = 'block';
+        currentQuestion++;
+        setTimeout(showQuestion, 1500);
+    }
+
+    function endQuiz() {
+        const resultDiv = document.getElementById('quizResult');
+        resultDiv.innerHTML = `
+    <span class="english">Quiz complete! Score: ${quizScore}/${quizData.length}</span>
+    <span class="burmese">ပဟေဠိပြီးဆုံးပါပြီရှင့်! ရမှတ်: ${quizScore}/${quizData.length}</span>
+  `;
+        document.getElementById('retryQuiz').style.display = 'block';
+    }
+
+    // ===== QUIZ EVENT LISTENER ===== (add with your other listeners)
+    document.getElementById('retryQuiz').addEventListener('click', () => {
+        currentQuestion = 0;
+        quizScore = 0;
+        document.getElementById('retryQuiz').style.display = 'none';
+        document.getElementById('quizResult').style.display = 'none';
+        showQuestion();
+    });
+
+
+
+    // Start music
+    function startMusic() {
+        bgMusic.volume = 0.4;
+        bgMusic.play().then(() => {
+            isMusicPlaying = true;
+            musicToggle.textContent = "❚❚";
+        }).catch(e => {
+            console.log("Autoplay was prevented. User must interact first.");
+            musicToggle.textContent = "▶";
+        });
+    }
+
+    // Stop music when video appears
+    function stopMusic() {
+        bgMusic.pause();
+        isMusicPlaying = false;
+        musicToggle.textContent = "♪";
+    }
+
+    // Toggle music
+    musicToggle.addEventListener('click', () => {
+        if (isMusicPlaying) {
+            bgMusic.pause();
+            musicToggle.textContent = "♪";
+        } else {
+            bgMusic.play();
+            musicToggle.textContent = "❚❚";
+        }
+        isMusicPlaying = !isMusicPlaying;
+    });
+
+    // Photo prompt logic
+    yesPhotoButton.addEventListener('click', () => {
+        photoGallery.style.display = 'block';
+        memoryWall.style.display = 'block';
+        photoPrompt.style.display = 'none';
+    });
+    noPhotoButton.addEventListener('click', () => {
+        photoPrompt.style.display = 'none';
+    });
+
+    // Video prompt logic
+    yesButton.addEventListener('click', () => {
+        videoContainer.style.display = 'block';
+        videoPrompt.style.display = 'none';
+        stopMusic();
+        loveVideo.play();
+    });
+    noButton.addEventListener('click', () => {
+        videoPrompt.style.display = 'none';
+    });
+
+
+    kissButton.addEventListener('click', function () {
+        kissSound.currentTime = 0;
+        kissSound.play();
+        createHearts();
+
+
+        const pulsingHeart = document.createElement('div');
+        pulsingHeart.className = 'pulsing-heart';
+        pulsingHeart.innerHTML = '❤';
+        document.body.appendChild(pulsingHeart);
+
+
+        setTimeout(() => {
+            pulsingHeart.remove();
+        }, 2000);
+    });
+
+
+    closeLetter.addEventListener('click', function () {
+        loveLetter.style.display = 'none';
+    });
+
+
+    calculateLove.addEventListener('click', function () {
+        const yourName = document.getElementById('yourName').value.trim();
+        const partnerName = document.getElementById('partnerName').value.trim();
+
+        if (!yourName || !partnerName) {
+            loveResult.textContent = "Please enter both names!";
+            return;
+        }
+
+
+        const combined = (yourName + partnerName).toLowerCase();
+        let loveScore = 0;
+
+        for (let i = 0; i < combined.length; i++) {
+            loveScore += combined.charCodeAt(i);
+        }
+
+        loveScore = (loveScore % 31) + 70; // Ensures a score between 70-100
+
+        loveResult.textContent = `Our Love Score: ${loveScore}% 💗Perfect!`;
+    });
+</script>
